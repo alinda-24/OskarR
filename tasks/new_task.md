@@ -1,168 +1,122 @@
-# Building a Simple 12-hour Clock in Java
+# Java Practice Tasks: Mastering Loops and Boolean Expressions 🌟
 
-A clock is an essential tool that helps us keep track of the time. In this week's lab, you will build a simple 12-hour clock in Java using various programming concepts. You'll work with boolean expressions, different types of loops, function overloading, and utilize JShell to validate your Java code incrementally. This exercise is designed to reinforce your understanding of Java syntax and programming paradigms.
+A key aspect of programming is leveraging the power of iteration to automate repetitive tasks effectively. This week's focus is on understanding and implementing Java's `boolean` expressions, `while` and `for` loops, utilizing JShell for Java experimentation, and exploring function overloading. These foundational concepts will help you solve more complex problems efficiently.
 
 ### 📝 Preparation
 
-- Review the following resources:
-  - [Lecture Slides on Booleans and Loops](https://docs.google.com/presentation/d/1kcsmcuBBu4Jr3O_r6eNP6IFrP6DEITDWeRS5_7rtV30/edit#slide=id.p)
-  - [Module on Looping with For-Each](https://qbl.sys.kth.se/sections/dd1337_programming/page/looping_with_foreach)
-  - [Module on Iteration](https://qbl.sys.kth.se/sections/dd1337_programming/page/iteration__continued)
+- Review the [Java Basics Overview](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/index.html) to refresh your understanding of Java.
+- Read [Java Boolean Expressions and Operators](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html) and familiarize yourself with different operators.
+- Explore JShell basics and experiments with simple Java expressions using [JShell Documentation](https://docs.oracle.com/javase/9/tools/jshell.htm).
 
 ### ✅ Learning Goals
 
-By the end of this assignment, you should be able to:
-
-* Understand and use `boolean` expressions and operators.
-* Implement and understand the flow of `while` loops.
-* Implement and understand the flow of `for` loops.
-* Use JShell to test parts of your Java program quickly.
-* Understand and apply function overloading.
+By the end of this task, you should be able to:
+- Understand and use `boolean` expressions and operators.
+- Write and execute `while` and `for` loops.
+- Experiment with Java code snippets using JShell.
+- Demonstrate the concept of function overloading.
 
 ### 🚨 Troubleshooting Guide
 
-If you encounter any difficulties, follow this guide:
+If you hit any snags:
+1. Check common issues and solutions on online programming forums and resources.
+2. Post your own questions on class discussion boards.
+3. Consult with peers or instructors during lab sessions for personalized support.
 
-1. Check this week's [posted issues](https://gits-15.sys.kth.se/inda-24/help/issues) to see if other students faced similar problems.
-2. If not, create a new issue [here](https://gits-15.sys.kth.se/inda-24/help/issues/new) with a descriptive title: "Task x: summary of problem here".
-3. Attend the weekly lab and ask a TA in person. Check your schedule for lab timings.
+### 🏛 Assignment: Weather-Based Decision Making System 🌦️
 
-Remember, discussing with peers is encouraged, but direct sharing or copying of solutions is not allowed.🚀
+The objective of this task is to build a weather-based decision-making tool. It will involve manipulating boolean expressions, constructing loops to process data, and practicing function overloading.
 
-### 🏛 Assignment
+#### Step-by-Step Exercises
 
-In this task, you'll create and manage the functionality of a simple 12-hour clock using Java. This involves using boolean expressions, looping structures, constructors, and function overloading.
+<details>
+<summary> 📚 Boolean Expressions and Operators </summary>
 
-#### Exercise 1: Understand Boolean Expressions and Operators
+Boolean expressions are at the core of making decisions in programming. They help evaluate conditions such as weather parameters to decide subsequent actions.
 
-Use JShell to evaluate the following boolean expressions. Open your terminal and type `jshell` to start.
+Try the following exercises in JShell:
+- Evaluate simple boolean expressions like `35 > 12`.
+- Develop compound expressions using logical operators: `humidity > 80 && temperature < 20`.
+- Try negation for filtering data: `!(windSpeed < 10)`.
 
-```java
-// Evaluate these expressions
-boolean expr1 = (5 < 10 && 2 < 3);
-boolean expr2 = (14 != 14 || 2 > 1);
-boolean expr3 = !(10 == 5);
+Use JShell to verify the results and gain confidence in understanding boolean logic in Java.
 
-// Experiment with more expressions of your own
-```
+</details>
 
-#### Exercise 2: Implement Basic 12-hour Clock Structure
+#### Exercise 1: Implementing `FetchingWeatherData.java`
 
-1. Create a class named `Clock` in your `src` folder.
-2. Define three private integer fields: `hours`, `minutes`, and `seconds`.
+1. **Fetching Weather Data:**
 
-```java
-public class Clock {
-   private int hours;
-   private int minutes;
-   private int seconds;
-   
-   // Define getter methods
-   public int getHours() { return hours; }
-   public int getMinutes() { return minutes; }
-   public int getSeconds() { return seconds; }
-}
-```
+   Create a Java class `FetchingWeatherData` with a method `fetchData()` that simulates fetching weather data points for temperature, humidity, and wind speed using a `while` loop. This method should generate random data until a valid dataset (e.g., temperature between -10 and 50 Celsius) is found.
 
-#### Exercise 3: Validate Clock Time
+   ```java
+   public void fetchData() {
+       double temperature;
+       int humidity;
+       int windSpeed;
+       boolean validData = false;
 
-Add `public` setter methods that validate input for `hours`, `minutes`, and `seconds`:
+       while (!validData) {
+           temperature = Math.random() * 60 - 10; // Random temperature between -10 and 50
+           humidity = (int) (Math.random() * 101); // Random humidity between 0 and 100
+           windSpeed = (int) (Math.random() * 50); // Random wind speed between 0 and 50
 
-- `setHours(int h)`: Valid hours are 1-12.
-- `setMinutes(int m)` and `setSeconds(int s)`: Valid values are 0-59.
+           validData = (temperature >= -10 && temperature <= 50);
+       }
 
-```java
-public void setHours(int hours) {
-   if (hours >= 1 && hours <= 12) this.hours = hours;
-}
+       // Output the generated weather data
+       System.out.printf("Temperature: %.2f, Humidity: %d%%, Wind Speed: %d km/h%n", temperature, humidity, windSpeed);
+   }
+   ```
 
-public void setMinutes(int minutes) {
-   if (minutes >= 0 && minutes <= 59) this.minutes = minutes;
-}
+#### Exercise 2: Building a Weather Summary System
 
-public void setSeconds(int seconds) {
-   if (seconds >= 0 && seconds <= 59) this.seconds = seconds;
-}
-```
+2. **Summarizing Weather Data:**
 
-#### Exercise 4: Constructor Overloading
+   Extend the `FetchingWeatherData` class with a method `summarizeData` that iterates over several data points (using a `for` loop) and outputs average weather statistics.
 
-Implement two constructors:
+   ```java
+   public void summarizeData(int numberOfDays) {
+       double totalTemperature = 0;
+       int totalHumidity = 0;
+       int totalWindSpeed = 0;
 
-1. A default constructor that sets the time to 12:00:00.
-2. An overloaded constructor with parameters for initializing hours, minutes, and seconds.
+       for (int i = 0; i < numberOfDays; i++) {
+           // Simulate fetching new data set using fetchData()
+           fetchData();
 
-```java
-// Constructor without parameters
-public Clock() {
-   this.hours = 12;
-   this.minutes = 0;
-   this.seconds = 0;
-}
+           // Simulating data aggregation
+           totalTemperature += Math.random() * 60 - 10;
+           totalHumidity += (int) (Math.random() * 101);
+           totalWindSpeed += (int) (Math.random() * 50);
+       }
 
-// Overloaded constructor
-public Clock(int hours, int minutes, int seconds) {
-   this(); // Call default constructor
-   setHours(hours);
-   setMinutes(minutes);
-   setSeconds(seconds);
-}
-```
+       System.out.printf("Average Temperature: %.2f, Average Humidity: %d%%, Average Wind Speed: %d km/h%n",
+               totalTemperature / numberOfDays, totalHumidity / numberOfDays, totalWindSpeed / numberOfDays);
+   }
+   ```
 
-#### Exercise 5: Display Time (Override `toString` Method)
+#### Exercise 3: Function Overloading 🎛️
 
-Override the `toString` method to return the time in the format "HH:MM:SS".
+3. **Weather Report Overloading:**
 
-```java
-@Override
-public String toString() {
-   return String.format("%02d:%02d:%02d", hours, minutes, seconds);
-}
-```
+   Add a method `generateWeatherReport` to demonstrate function overloading by providing different versions based on parameters.
 
-Launch JShell and test the toString method:
+   ```java
+   // Overloaded method with different parameters for weather report
+   public String generateWeatherReport(int day) {
+       return String.format("Report for day %d: Sunny", day);
+   }
 
-```bash
-jshell Clock.java
-Clock myClock = new Clock(10, 5, 30);
-System.out.println(myClock.toString());  // Output: 10:05:30
-```
-
-#### Exercise 6: Incrementing Seconds - Tick Method
-
-Create a `tick` method that advances the time by one second.
-
-```java
-public void tick() {
-   seconds = (seconds + 1) % 60;
-   if (seconds == 0) {
-       minutes = (minutes + 1) % 60;
-       if (minutes == 0) {
-           hours = (hours % 12) + 1;
+   public String generateWeatherReport(int day, boolean detailed) {
+       if (detailed) {
+           return String.format("Detailed report for day %d: Light showers with temperature of 22°C, humidity 75%%, wind 18 km/h", day);
+       } else {
+           return generateWeatherReport(day);
        }
    }
-}
-```
+   ```
 
-#### Exercise 7: Implement and Test Looping with Function Overloading
+   Use JShell to quickly try out these overloaded methods and understand how different parameter types and counts influence method selection.
 
-Add a tick method to move the clock forward by a given number of seconds. Use a loop structure for this (choose between `for` or `while`).
-
-```java
-public void tick(int seconds) {
-   for (int i = 0; i < seconds; i++) {
-       tick();
-       System.out.println(toString());
-   }
-}
-```
-
-Test this method using JShell to see the output after each tick:
-
-```bash
-jshell
-Clock myClock = new Clock(11, 59, 58);
-myClock.tick(5);  // Simulates ticking 5 seconds forward
-```
-
-Congratulations! 🎉 You've now built a simple clock using loops, boolean logic, and function overloading, and you've practiced using JShell for quicker iteration and testing of your Java programs.
+This task will provide you with practical experience in handling boolean logic, loops, and method overloading in Java. Happy coding! 🖥️💻
